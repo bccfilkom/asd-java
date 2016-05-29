@@ -14,10 +14,11 @@ public class SingleLinkedList implements ILinkedList {
     }
 
     Node head, tail;
+    private int size = 0;
 
     @Override
     public boolean isEmpty() {
-        return (head == null && tail == null);
+        return size() == 0;
     }
 
     @Override
@@ -30,6 +31,7 @@ public class SingleLinkedList implements ILinkedList {
             newest.next = head;
             head = newest;
         }
+        size++;
     }
 
     @Override
@@ -40,6 +42,7 @@ public class SingleLinkedList implements ILinkedList {
             Node newest = new Node(newData, null);
             tail.next = newest;
             tail = newest;
+            size++;
         }
     }
 
@@ -49,6 +52,7 @@ public class SingleLinkedList implements ILinkedList {
 
         Object removed = head.data;
         head = head.next;
+        size--;
 
         return removed;
     }
@@ -68,6 +72,7 @@ public class SingleLinkedList implements ILinkedList {
             pointer = pointer.next;
         }
 
+        size--;
         return removed;
     }
 
@@ -85,13 +90,7 @@ public class SingleLinkedList implements ILinkedList {
 
     @Override
     public int size() {
-        int count = 0;
-        Node pointer = head;
-        while (pointer != null) {
-            count++;
-            pointer = pointer.next;
-        }
-        return count;
+        return size;
     }
 
     public static void main(String[] args) {
