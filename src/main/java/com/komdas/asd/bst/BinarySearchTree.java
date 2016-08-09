@@ -1,5 +1,7 @@
 package com.komdas.asd.bst;
 
+import com.komdas.asd.queue.Queue;
+
 public class BinarySearchTree {
 
     class Node {
@@ -49,6 +51,16 @@ public class BinarySearchTree {
         }
     }
 
+    public void levelOrderTraversal() {
+        Queue q = new Queue();
+        q.enqueue(root);
+        while (q.size() != 0) {
+            Node n = (Node) q.dequeue();
+            System.out.println(n.id);
+            if (n.left != null) q.enqueue(n.left);
+            if (n.right != null) q.enqueue(n.right);
+        }
+    }
 
     public static void main(String[] args) {
         BinarySearchTree b = new BinarySearchTree();
@@ -59,7 +71,7 @@ public class BinarySearchTree {
         b.insert(63,63);
         b.insert(100,100);
         b.insert(10,10);
-        b.print();
+        b.levelOrderTraversal();
     }
 
 }
